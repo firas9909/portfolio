@@ -1,0 +1,14 @@
+# Ignorer tous les fichiers PDF de CV
+*.pdf
+
+# Ignorer les scripts de génération et fichiers HTML de CV / preview
+build_*.py
+cv_*.html
+cv firas*
+preview.html
+extracted_assets/
+portfolio.html
+
+# Ignorer les assets du CV et captures d'écran
+assets/*
+!assets/profile.jpg
