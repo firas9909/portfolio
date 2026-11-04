@@ -1,0 +1,2907 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firas Sellami — Ingénieur Génie Logiciel & DevOps | Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* =========================================================
+       VARIABLES & DESIGN SYSTEM
+       ========================================================= */
+    :root {
+      --bg-dark: #070b14;
+      --bg-card: rgba(15, 23, 42, 0.7);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --border-card: rgba(56, 189, 248, 0.15);
+      --border-card-hover: rgba(56, 189, 248, 0.4);
+
+      --primary: #38bdf8;         /* Cyan Neon */
+      --primary-rgb: 56, 189, 248;
+      --secondary: #6366f1;       /* Indigo Glow */
+      --accent: #10b981;          /* Emerald */
+      --purple: #a855f7;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    ::selection {
+      background: rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* =========================================================
+       CUSTOM CURSOR
+       ========================================================= */
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    .cursor-outline {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, border-color 0.2s, background-color 0.2s, transform 0.15s ease-out;
+    }
+
+    @media (max-width: 768px) {
+      .cursor-dot, .cursor-outline { display: none; }
+    }
+
+    /* =========================================================
+       BACKGROUND CANVAS & MESH GRADIENTS
+       ========================================================= */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .gradient-mesh {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.18;
+      z-index: 0;
+      pointer-events: none;
+      animation: floatGlow 18s ease-in-out infinite alternate;
+    }
+
+    .mesh-1 {
+      top: -150px;
+      left: -150px;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+    }
+
+    .mesh-2 {
+      top: 40%;
+      right: -200px;
+      background: radial-gradient(circle, var(--secondary), transparent 70%);
+      animation-delay: -6s;
+    }
+
+    .mesh-3 {
+      bottom: -150px;
+      left: 20%;
+      background: radial-gradient(circle, var(--purple), transparent 70%);
+      animation-delay: -12s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 80px) scale(1.15); }
+      100% { transform: translate(-40px, -50px) scale(0.9); }
+    }
+
+    /* =========================================================
+       LAYOUT & UTILITIES
+       ========================================================= */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .badge-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-emerald {
+      background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Glassmorphic Card */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 30px;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .glass-card:hover {
+      border-color: var(--border-card-hover);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(56, 189, 248, 0.12);
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    /* =========================================================
+       NAVIGATION BAR
+       ========================================================= */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1120px;
+      height: 68px;
+      background: rgba(10, 15, 29, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #070b14;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.15));
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      transition: var(--transition-smooth);
+    }
+
+    .btn-glow:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.45);
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(99, 102, 241, 0.25));
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       HERO SECTION
+       ========================================================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 130px;
+      padding-bottom: 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 16px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #34d399;
+      margin-bottom: 24px;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseGreen 2s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .hero-greeting {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .hero-name {
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .typing-box {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 22px;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.3em;
+      background-color: var(--primary);
+      margin-left: 6px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-bio {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 34px;
+      max-width: 560px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 38px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: rgba(30, 41, 59, 0.9);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-socials {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1.15rem;
+      transition: var(--transition-smooth);
+    }
+
+    .social-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    /* Hero Visual Card (3D Tilt) */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-card {
+      position: relative;
+      width: 340px;
+      height: 420px;
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 28px;
+      overflow: hidden;
+      padding: 18px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px rgba(56, 189, 248, 0.15);
+      transition: transform 0.2s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    .avatar-img-wrapper {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .avatar-card:hover .avatar-img {
+      transform: scale(1.05);
+    }
+
+    .avatar-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 11, 20, 0.92) 0%, rgba(7, 11, 20, 0.25) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+
+    .overlay-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .overlay-sub {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-weight: 500;
+    }
+
+    /* Floating Badges */
+    .floating-chip {
+      position: absolute;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      animation: floatBadge 6s ease-in-out infinite alternate;
+      z-index: 10;
+    }
+
+    .chip-1 {
+      top: 30px;
+      left: -35px;
+      animation-delay: 0s;
+    }
+
+    .chip-2 {
+      bottom: 40px;
+      right: -30px;
+      animation-delay: -3s;
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-12px); }
+    }
+
+    .chip-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .chip-icon.blue {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+    }
+
+    .chip-icon.green {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent);
+    }
+
+    .chip-text-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .chip-text-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================
+       STATISTICS COUNTERS
+       ========================================================= */
+    .stats-bar {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .stat-num {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       ABOUT & METHODOLOGY
+       ========================================================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .pillar-card {
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: var(--transition-smooth);
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-3px);
+      background: rgba(30, 41, 59, 0.7);
+    }
+
+    .pillar-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .pillar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .pillar-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* =========================================================
+       SKILLS SECTION
+       ========================================================= */
+    .skills-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .skill-tab-btn {
+      padding: 10px 22px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .skill-tab-btn:hover, .skill-tab-btn.active {
+      color: #fff;
+      border-color: var(--primary);
+      background: rgba(56, 189, 248, 0.12);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 22px;
+    }
+
+    .skill-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .skill-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary);
+      transition: var(--transition-smooth);
+    }
+
+    .skill-card:hover .skill-icon-box {
+      transform: scale(1.1) rotate(5deg);
+      background: rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .skill-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .skill-level-text {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .skill-bar-bg {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 9999px;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================
+       EXPERIENCE TIMELINE
+       ========================================================= */
+    .timeline {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 15px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 40%, var(--secondary) 80%, transparent 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 45px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -33px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 12px var(--primary);
+      transition: var(--transition-smooth);
+    }
+
+    .timeline-item:hover .timeline-dot {
+      background: var(--primary);
+      transform: scale(1.3);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .timeline-content {
+      padding: 26px 30px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .exp-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .exp-company {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 2px;
+    }
+
+    .exp-badge-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+
+    .exp-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .exp-highlights {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .exp-highlights li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+      color: #cbd5e1;
+    }
+
+    .exp-highlights li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-tag {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      transition: var(--transition-smooth);
+    }
+
+    .tech-tag:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       PROJECTS SHOWCASE
+       ========================================================= */
+    .project-filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 45px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 9px 20px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      color: #fff;
+      border-color: var(--primary);
+      background: rgba(56, 189, 248, 0.12);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 26px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      border-radius: 22px;
+      padding: 26px;
+      cursor: pointer;
+    }
+
+    .project-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .project-category {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .project-badge-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .project-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-detail {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+    }
+
+    .project-card:hover .btn-detail {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       EDUCATION & CERTIFICATIONS
+       ========================================================= */
+    .edu-cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .sub-section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .edu-item {
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .edu-degree {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-size: 0.92rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .edu-date {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .cert-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.15));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .cert-issuer {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================
+       CONTACT SECTION
+       ========================================================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .contact-card:hover {
+      transform: translateX(6px);
+      border-color: var(--primary);
+    }
+
+    .contact-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .contact-card-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .contact-card-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    .form-textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+      background: rgba(7, 11, 20, 0.95);
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .btn-scroll-top {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-scroll-top:hover {
+      background: var(--primary);
+      color: #070b14;
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    /* =========================================================
+       MODAL DE DÉTAIL PROJET
+       ========================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 11, 20, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #0f172a;
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 24px;
+      padding: 34px;
+      position: relative;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.2);
+    }
+
+    .modal-backdrop.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close:hover {
+      background: #ef4444;
+      transform: rotate(90deg);
+    }
+
+    .modal-category {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .modal-body {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.68;
+      margin-bottom: 22px;
+    }
+
+    .modal-features-list {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+
+    .modal-features-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 9px;
+      color: #e2e8f0;
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+
+    .modal-features-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       RESPONSIVE DESIGN
+       ========================================================= */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-bio {
+        margin: 0 auto 34px auto;
+      }
+      .hero-cta {
+        justify-content: center;
+      }
+      .hero-socials {
+        justify-content: center;
+      }
+      .about-grid, .edu-cert-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .hero-name {
+        font-size: 2.8rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .avatar-card {
+        width: 280px;
+        height: 360px;
+      }
+      .chip-1 { left: -10px; }
+      .chip-2 { right: -10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Glowing Mesh Ambient Orbs -->
+  <div class="gradient-mesh mesh-1"></div>
+  <div class="gradient-mesh mesh-2"></div>
+  <div class="gradient-mesh mesh-3"></div>
+
+  <!-- =========================================================
+       NAVIGATION BAR
+       ========================================================= -->
+  <header>
+    <nav class="navbar" id="navbar">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-badge">FS</div>
+        <span>firas.sellami</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#hero" class="nav-link active">Accueil</a></li>
+        <li><a href="#about" class="nav-link">À Propos</a></li>
+        <li><a href="#skills" class="nav-link">Compétences</a></li>
+        <li><a href="#experience" class="nav-link">Parcours</a></li>
+        <li><a href="#projects" class="nav-link">Projets</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cv_firas_sellami_modele2_onepage.pdf" download class="btn-glow">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Mon CV</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =========================================================
+       HERO SECTION
+       ========================================================= -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Col Gauche : Texte & Accroche -->
+        <div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Ingénieur Informatique & DevOps chez MTD Group</span>
+          </div>
+
+          <div class="hero-greeting">Bonjour, je m'appelle</div>
+          <h1 class="hero-name">
+            Firas <span class="text-gradient">Sellami</span>
+          </h1>
+
+          <div class="typing-box">
+            <span id="typed-text"></span>
+            <span class="typing-cursor"></span>
+          </div>
+
+          <p class="hero-bio">
+            Ingénieur en Génie Logiciel diplômé de l'Institut International de Technologie (IIT). 
+            En poste chez <strong>MTD Group</strong>, je conçois et déploie des 
+            <strong>solutions ERP et plateformes métiers haute disponibilité</strong> (CakePHP, PHP 8+), 
+            des <strong>applications mobiles cross-platform</strong> (Flutter) et des 
+            <strong>pipelines d'intégration & livraison continue (CI/CD Jenkins)</strong>.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn-primary">
+              <i class="fa-solid fa-laptop-code"></i>
+              <span>Explorer mes réalisations</span>
+            </a>
+            <a href="#contact" class="btn-secondary">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Me contacter</span>
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/firas9909" target="_blank" class="social-btn" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/firas-sellami-107b22295" target="_blank" class="social-btn" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:firas.sellami.tn@gmail.com" class="social-btn" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="tel:+21694874687" class="social-btn" title="Téléphone">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col Droite : Avatar 3D & Floating Badges -->
+        <div class="hero-visual">
+          <div class="avatar-card" id="avatarCard">
+            <div class="avatar-img-wrapper">
+              <img src="assets/profile.jpg" alt="Firas Sellami" class="avatar-img">
+              <div class="avatar-overlay">
+                <div class="overlay-title">Firas Sellami</div>
+                <div class="overlay-sub">&lt;Ingénieur Logiciel & DevOps /&gt;</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badges flottants dynamiques -->
+          <div class="floating-chip chip-1">
+            <div class="chip-icon blue">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <div>
+              <div class="chip-text-title">CakePHP & Spring</div>
+              <div class="chip-text-sub">CI/CD Jenkins · Docker</div>
+            </div>
+          </div>
+
+          <div class="floating-chip chip-2">
+            <div class="chip-icon green">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <div>
+              <div class="chip-text-title">Mobile & Web</div>
+              <div class="chip-text-sub">Flutter · Angular · React</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barre de Statistiques & Impact -->
+      <div class="stats-bar glass-card">
+        <div class="stat-item">
+          <div class="stat-num" data-target="2">0</div>
+          <div class="stat-label">Années d'Ingénierie & Prod</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="10">0</div>
+          <div class="stat-label">Projets & ERPs Déployés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="15">0</div>
+          <div class="stat-label">Technologies & Outils Maîtrisés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="100">0</div>
+          <div class="stat-label">% Rigueur & Automatisation CI/CD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ABOUT SECTION
+       ========================================================= -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-sub"><i class="fa-solid fa-user-astronaut"></i> Présentation</div>
+        <h2 class="section-title">L'Ingénierie Logicielle <span class="text-gradient">au Cœur de l'Entreprise</span></h2>
+        <p class="section-desc">De la modélisation des architectures ERP jusqu'au déploiement continu automatisé en production.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="glass-card about-text">
+          <p>
+            Diplômé du <strong>Cycle d'Ingénieur en Génie Logiciel</strong> à l'Institut International de Technologie (IIT) 
+            et actuellement <strong>Ingénieur Informatique chez MTD Group</strong>, j'interviens sur la conception, l'évolution 
+            et la mise en production de systèmes applicatifs critiques et d'applications mobiles d'envergure.
+          </p>
+          <p>
+            Mon travail quotidien chez MTD Group allie le développement robuste en <strong>CakePHP / PHP</strong>, 
+            la conception d'interfaces mobiles réactives sous <strong>Flutter</strong>, la structuration de bases de données relationnelles 
+            à forte volumétrie (MySQL) et l'automatisation des cycles de livraison via des pipelines <strong>Jenkins (`Jenkinsfile`)</strong> 
+            et des environnements conteneurisés.
+          </p>
+          <p>
+            Attaché au respect strict du secret professionnel et des standards de qualité logicielle, je m'assure que chaque composant développé 
+            soit maintenable, auditable, performant et conforme aux exigences métiers des clients.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <h3 class="pillar-title">Solutions ERP & B2B</h3>
+            <p class="pillar-desc">Systèmes de gestion commerciale, comptabilité générale, flux logistiques et règles métiers complexes.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <h3 class="pillar-title">Applications Mobiles Flutter</h3>
+            <p class="pillar-desc">Solutions cross-platform natives pour les équipes terrain (inspections, suivi RH, gestion d'actifs).</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-code-merge"></i></div>
+            <h3 class="pillar-title">Pipelines CI/CD & DevOps</h3>
+            <p class="pillar-desc">Automatisation continue des builds, tests et déploiements via Jenkinsfiles, scripts SSH et Docker.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="pillar-title">Sécurité & Confidentialité</h3>
+            <p class="pillar-desc">Authentification par tokens (JWT), audit logs, gestion des privilèges et protection des données sensibles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SKILLS SECTION
+       ========================================================= -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-sub"><i class="fa-solid fa-code"></i> Compétences Clés</div>
+        <h2 class="section-title">Matrice Technique & <span class="text-gradient">Outils de Production</span></h2>
+        <p class="section-desc">Un ensemble de technologies éprouvées au quotidien dans l'environnement d'entreprise.</p>
+      </div>
+
+      <div class="skills-tabs">
+        <button class="skill-tab-btn active" onclick="filterSkills('all')">Tous</button>
+        <button class="skill-tab-btn" onclick="filterSkills('backend')">Backend & ERP</button>
+        <button class="skill-tab-btn" onclick="filterSkills('frontend')">Mobile & Frontend</button>
+        <button class="skill-tab-btn" onclick="filterSkills('devops')">DevOps & Base de Données</button>
+      </div>
+
+      <div class="skills-grid" id="skillsContainer">
+        <!-- CakePHP & PHP -->
+        <div class="glass-card skill-card" data-cat="backend">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-brands fa-php"></i></div>
+              <div>
+                <div class="skill-name">CakePHP & PHP 8+</div>
+                <div class="skill-level-text">Expert · 92%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 92%;"></div>
+          </div>
+        </div>
+
+        <!-- Flutter & Dart -->
+        <div class="glass-card skill-card" data-cat="frontend">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
+              <div>
+                <div class="skill-name">Flutter & Dart</div>
+                <div class="skill-level-text">Avancé · 88%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 88%;"></div>
+          </div>
+        </div>
+
+        <!-- Jenkins & CI/CD -->
+        <div class="glass-card skill-card" data-cat="devops">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-brands fa-jenkins"></i></div>
+              <div>
+                <div class="skill-name">Jenkins & Jenkinsfile (CI/CD)</div>
+                <div class="skill-level-text">Avancé · 85%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <!-- Spring Boot -->
+        <div class="glass-card skill-card" data-cat="backend">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-brands fa-java"></i></div>
+              <div>
+                <div class="skill-name">Spring Boot & Microservices</div>
+                <div class="skill-level-text">Avancé · 88%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 88%;"></div>
+          </div>
+        </div>
+
+        <!-- MySQL & PostgreSQL -->
+        <div class="glass-card skill-card" data-cat="devops">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-solid fa-database"></i></div>
+              <div>
+                <div class="skill-name">MySQL & PostgreSQL</div>
+                <div class="skill-level-text">Avancé · 90%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <!-- Docker -->
+        <div class="glass-card skill-card" data-cat="devops">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-brands fa-docker"></i></div>
+              <div>
+                <div class="skill-name">Docker & Conteneurisation</div>
+                <div class="skill-level-text">Opérationnel · 82%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 82%;"></div>
+          </div>
+        </div>
+
+        <!-- Angular & React -->
+        <div class="glass-card skill-card" data-cat="frontend">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-brands fa-angular"></i></div>
+              <div>
+                <div class="skill-name">Angular & React (TypeScript)</div>
+                <div class="skill-level-text">Avancé · 84%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 84%;"></div>
+          </div>
+        </div>
+
+        <!-- Git & Versioning -->
+        <div class="glass-card skill-card" data-cat="devops">
+          <div class="skill-top">
+            <div class="skill-info">
+              <div class="skill-icon-box"><i class="fa-brands fa-git-alt"></i></div>
+              <div>
+                <div class="skill-name">Git & GitLab Enterprise</div>
+                <div class="skill-level-text">Expert · 92%</div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width: 92%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EXPERIENCE SECTION
+       ========================================================= -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-sub"><i class="fa-solid fa-briefcase"></i> Expérience Professionnelle</div>
+        <h2 class="section-title">Parcours & <span class="text-gradient">Carrière d'Ingénieur</span></h2>
+        <p class="section-desc">Des responsabilités en entreprise et des réalisations techniques tangibles.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- MTD Group (Poste Actuel) -->
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--accent); border-color: #34d399; box-shadow: 0 0 16px rgba(16, 185, 129, 0.8);"></div>
+          <div class="glass-card timeline-content" style="border-color: rgba(16, 185, 129, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px rgba(16, 185, 129, 0.1);">
+            <div class="exp-header">
+              <div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <h3 class="exp-title">Ingénieur Informatique & DevOps</h3>
+                  <span style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 9999px;">
+                    <i class="fa-solid fa-circle-check"></i> En Poste Actuel
+                  </span>
+                </div>
+                <div class="exp-company">MTD Group · Sfax, Tunisie</div>
+              </div>
+              <div class="exp-badge-date" style="border-color: rgba(16, 185, 129, 0.35); color: #34d399; background: rgba(16, 185, 129, 0.08);">
+                <i class="fa-regular fa-calendar"></i> Mars 2025 – Aujourd'hui
+              </div>
+            </div>
+            <p class="exp-body">
+              Prise en charge du développement full-stack, de la refonte architecturale et du déploiement continu d'un ensemble de 
+              <strong>solutions d'entreprise à haute valeur ajoutée</strong> (systèmes ERP industriels, gestion de flottes automobiles, 
+              plateformes transactionnelles et fintech, applications mobiles pour intervenants de terrain).
+            </p>
+            <ul class="exp-highlights">
+              <li>Développement backend modulaire sous le framework <strong>CakePHP & PHP 8+</strong> : gestion fine des droits, règles d'affaires transactionnelles et optimisation des requêtes MySQL.</li>
+              <li>Création et maintenance d'applications mobiles cross-platform sous <strong>Flutter & Dart</strong> connectées aux APIs REST d'entreprise.</li>
+              <li>Mise en place et automatisation des pipelines d'intégration et de livraison continue (CI/CD) via des <strong>Jenkinsfiles (Jenkins)</strong> avec déploiement distant sécurisé via SSH.</li>
+              <li>Génération automatisée de documents officiels (bons de commande/livraison en PDF, factures, QR codes de traçabilité).</li>
+              <li>Collaboration au sein d'équipes pluridisciplinaires selon les normes industrielles de sécurité, de gestion de versions Git et de confidentialité des données clients.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">CakePHP</span>
+              <span class="tech-tag" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">PHP 8+</span>
+              <span class="tech-tag" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">Flutter / Dart</span>
+              <span class="tech-tag" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">Jenkins CI/CD</span>
+              <span class="tech-tag" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">Jenkinsfile</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Git / GitLab</span>
+              <span class="tech-tag">REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PFE ASM -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-content">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-title">Stage de Fin d'Études (PFE) — Ingénieur Logiciel Full-Stack</h3>
+                <div class="exp-company">All Soft Multimédia (ASM) · Sfax</div>
+              </div>
+              <div class="exp-badge-date">
+                <i class="fa-regular fa-calendar"></i> Fév 2024 – Juin 2024
+              </div>
+            </div>
+            <p class="exp-body">
+              Conception et réalisation d'une <strong>plateforme SaaS multi-tenant d'enquêtes de satisfaction</strong> 
+              avec analyse automatique et segmentation dynamique des données recueillies.
+            </p>
+            <ul class="exp-highlights">
+              <li>Architecture <strong>Microservices</strong> distribuée sous <strong>Spring Boot</strong> avec sécurité <strong>Spring Security & JWT</strong>.</li>
+              <li>Frontend modulaire réactif développé avec <strong>Angular</strong> et visualisations graphiques avancées.</li>
+              <li>Modélisation relationnelle avec <strong>PostgreSQL</strong>, tests unitaires sous <strong>JUnit</strong> et conteneurisation <strong>Docker</strong>.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag">Microservices</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Spring Security</span>
+              <span class="tech-tag">Angular</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">JUnit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage Perfectionnement ASM -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-content">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-title">Stage de Perfectionnement — Développeur Full-Stack & Mobile</h3>
+                <div class="exp-company">All Soft Multimédia (ASM) · Sfax</div>
+              </div>
+              <div class="exp-badge-date">
+                <i class="fa-regular fa-calendar"></i> Juil 2023 – Août 2023
+              </div>
+            </div>
+            <p class="exp-body">
+              Création d'une application mobile géolocalisée d'exploration, filtrage dynamique et évaluation 
+              collaborative d'établissements touristiques avec système d'évaluation par étoiles.
+            </p>
+            <ul class="exp-highlights">
+              <li>Développement de l'application mobile cross-platform sous <strong>Flutter & Dart</strong>.</li>
+              <li>Backend d'API RESTful sous <strong>Laravel (PHP)</strong> et base de données <strong>MySQL</strong>.</li>
+              <li>Validation fonctionnelle et documentation intégrale des endpoints avec <strong>Postman</strong>.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Postman</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage Freedom of Dev -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-content">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-title">Stage de Fin d'Année — Développeur Web & Mobile</h3>
+                <div class="exp-company">Société Freedom of Dev · Sfax</div>
+              </div>
+              <div class="exp-badge-date">
+                <i class="fa-regular fa-calendar"></i> Mars 2023 – Juin 2023
+              </div>
+            </div>
+            <p class="exp-body">
+              Solution numérique unifiée Web et Mobile pour le suivi et la gestion en temps réel des disponibilités des ressources humaines de l'IIT.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Flutter / Dart</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Cloud Firestore</span>
+              <span class="tech-tag">Scrum</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PROJECTS SHOWCASE
+       ========================================================= -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-sub"><i class="fa-solid fa-layer-group"></i> Réalisations Majeures</div>
+        <h2 class="section-title">Systèmes Métiers & <span class="text-gradient">Projets d'Entreprise</span></h2>
+        <p class="section-desc">
+          Une sélection de plateformes industrielles, d'applications mobiles et de systèmes distribués développés avec rigueur.
+        </p>
+      </div>
+
+      <div class="project-filters">
+        <button class="filter-btn active" onclick="filterProjects('all')">Tous</button>
+        <button class="filter-btn" onclick="filterProjects('enterprise')">Systèmes ERP & Entreprise</button>
+        <button class="filter-btn" onclick="filterProjects('mobile')">Applications Mobiles (Flutter)</button>
+        <button class="filter-btn" onclick="filterProjects('microservices')">Microservices & Cloud</button>
+      </div>
+
+      <div class="projects-grid" id="projectsContainer">
+        <!-- Projet MTD 1 : Plateforme Automobile & Inspections -->
+        <div class="glass-card project-card" data-cat="enterprise" onclick="openModal('fleet_inspection')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Système Métier Automobile</span>
+              <span class="project-badge-tag">Production</span>
+            </div>
+            <h3 class="project-title">Plateforme de Gestion de Flotte & Inspection Multi-Agences</h3>
+            <p class="project-desc">
+              Solution complète Web & Mobile pour le suivi centralisé de parcs automobiles, la conduite d'inspections techniques sur le terrain et la gestion dynamique des inventaires.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">CakePHP</span>
+              <span class="tech-tag">Flutter Mobile</span>
+              <span class="tech-tag">Jenkins CI/CD</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet MTD 2 : ERP Industriel & Préfabrication -->
+        <div class="glass-card project-card" data-cat="enterprise" onclick="openModal('industrial_erp')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">ERP Industriel & Logistique</span>
+              <span class="project-badge-tag">Production</span>
+            </div>
+            <h3 class="project-title">ERP Industriel & Chaîne d'Approvisionnement B2B</h3>
+            <p class="project-desc">
+              Plateforme ERP pilotant les commandes clients/fournisseurs, les bons de livraison, les journaux d'audit et la traçabilité des produits manufacturés via QR-Codes et génération de PDF.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">CakePHP</span>
+              <span class="tech-tag">QR-Code</span>
+              <span class="tech-tag">DomPDF</span>
+              <span class="tech-tag">Jenkinsfile</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet MTD 3 : Fintech & Cashback -->
+        <div class="glass-card project-card" data-cat="enterprise" onclick="openModal('fintech_loyalty')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Fintech & Transactions</span>
+              <span class="project-badge-tag">Production</span>
+            </div>
+            <h3 class="project-title">Moteur Fintech de Cashback & Gestion Transactionnelle</h3>
+            <p class="project-desc">
+              Plateforme sécurisée de calcul des règles de cashback, gestion des commissions partenaires, validation des relevés financiers et accès agents/évaluateurs.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">CakePHP</span>
+              <span class="tech-tag">Firebase JWT</span>
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Jenkins</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet MTD 4 : Location & Comptabilité -->
+        <div class="glass-card project-card" data-cat="enterprise" onclick="openModal('leasing_accounting')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">ERP & Comptabilité</span>
+              <span class="project-badge-tag">Production</span>
+            </div>
+            <h3 class="project-title">Système de Location de Véhicules & Comptabilité Intégrée</h3>
+            <p class="project-desc">
+              ERP de location automobile couplé à un module financier complet : Grand Livre comptable, gestion des comptes bancaires, balances et états de caisse journaliers.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">CakePHP</span>
+              <span class="tech-tag">Module Comptable</span>
+              <span class="tech-tag">PHPMailer</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet MTD 5 : Portail d'Assurance & Souscriptions -->
+        <div class="glass-card project-card" data-cat="enterprise" onclick="openModal('trust_portal')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Portail B2B & Souscriptions</span>
+              <span class="project-badge-tag">Production</span>
+            </div>
+            <h3 class="project-title">Portail d'Entreprise & Gestion des Souscriptions Sécurisées</h3>
+            <p class="project-desc">
+              Plateforme de digitalisation des processus contractuels, fiabilisation des échanges de données sensibles et suivi des dossiers de souscription pour les partenaires.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">CakePHP / PHP</span>
+              <span class="tech-tag">REST API</span>
+              <span class="tech-tag">GitLab</span>
+              <span class="tech-tag">CI/CD</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 6 : Microservices Enquêtes (PFE ASM) -->
+        <div class="glass-card project-card" data-cat="microservices" onclick="openModal('survey')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Microservices SaaS</span>
+              <span class="project-badge-tag">Cloud</span>
+            </div>
+            <h3 class="project-title">Plateforme SaaS d'Analyse d'Enquêtes</h3>
+            <p class="project-desc">
+              Architecture microservices dédiée à la génération dynamique d'enquêtes de satisfaction, avec agrégation de métriques et segmentation statistique multi-critères.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Angular</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Docker</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 7 : Core Banking -->
+        <div class="glass-card project-card" data-cat="enterprise" onclick="openModal('banking')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Système Bancaire</span>
+              <span class="project-badge-tag">Sécurité</span>
+            </div>
+            <h3 class="project-title">Système de Gestion Bancaire Sécurisé</h3>
+            <p class="project-desc">
+              Application bancaire centrale gérant la tenue de comptes, les virements interbancaires en temps réel, l'historisation comptable et la traçabilité des opérations.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Thymeleaf</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Bootstrap</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 8 : Application Mobile Lieux Flutter -->
+        <div class="glass-card project-card" data-cat="mobile" onclick="openModal('places')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Mobile Cross-Platform</span>
+              <span class="project-badge-tag">Flutter</span>
+            </div>
+            <h3 class="project-title">Guide Géolocalisé & Notation Collaborative</h3>
+            <p class="project-desc">
+              Application mobile de recherche intelligente, filtrage géolocalisé et système d'avis par étoiles pour établissements touristiques et de loisirs.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Laravel API</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 9 : RH Temps Réel Flutter -->
+        <div class="glass-card project-card" data-cat="mobile" onclick="openModal('hr')">
+          <div>
+            <div class="project-top-row">
+              <span class="project-category">Mobile & Web Temps Réel</span>
+              <span class="project-badge-tag">Firebase</span>
+            </div>
+            <h3 class="project-title">Plateforme RH & Suivi de Disponibilité IIT</h3>
+            <p class="project-desc">
+              Solution connectée synchronisée en temps réel pour le suivi des présences, la planification des cours et la disponibilité des ressources humaines.
+            </p>
+          </div>
+          <div>
+            <div class="tech-tags" style="margin-bottom: 14px;">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Cloud Firestore</span>
+            </div>
+            <div class="project-footer">
+              <span class="btn-detail">Architecture & détails <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EDUCATION & CERTIFICATIONS
+       ========================================================= -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="edu-cert-grid">
+        <!-- Formations -->
+        <div>
+          <div class="sub-section-title">
+            <i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i>
+            <span>Formations & Diplômes</span>
+          </div>
+
+          <div class="glass-card edu-item">
+            <h3 class="edu-degree">Diplôme National d'Ingénieur en Génie Logiciel</h3>
+            <div class="edu-school">Institut International de Technologie (IIT) · Sfax</div>
+            <div class="edu-date"><i class="fa-regular fa-calendar"></i> Septembre 2021 – Juillet 2024</div>
+          </div>
+
+          <div class="glass-card edu-item">
+            <h3 class="edu-degree">Cycle Préparatoire aux Études d'Ingénieurs (PC)</h3>
+            <div class="edu-school">Faculté des Sciences de Sfax (FSS)</div>
+            <div class="edu-date"><i class="fa-regular fa-calendar"></i> Septembre 2018 – Juin 2021</div>
+          </div>
+
+          <div class="glass-card edu-item">
+            <h3 class="edu-degree">Baccalauréat Scientifique (Mathématiques)</h3>
+            <div class="edu-school">Lycée Taïeb Mhiri · Sfax</div>
+            <div class="edu-date"><i class="fa-regular fa-calendar"></i> Septembre 2015 – Juin 2018</div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div>
+          <div class="sub-section-title">
+            <i class="fa-solid fa-award" style="color: var(--primary);"></i>
+            <span>Certifications Officielles</span>
+          </div>
+
+          <div class="glass-card cert-item">
+            <div class="cert-icon">
+              <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <div>
+              <h3 class="cert-name">CCNA 1 - Introduction to Networks</h3>
+              <div class="cert-issuer">Cisco Networking Academy · Réseaux, routage & protocoles IP</div>
+            </div>
+          </div>
+
+          <div class="glass-card cert-item">
+            <div class="cert-icon">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div>
+              <h3 class="cert-name">Certificat d'Ingénieur en Big Data</h3>
+              <div class="cert-issuer">IBM Professional Certification · Analyse et traitement massif de données</div>
+            </div>
+          </div>
+
+          <!-- Langues rapides -->
+          <div class="glass-card" style="padding: 20px;">
+            <div style="font-weight: 700; color: #fff; margin-bottom: 12px;">Maîtrise des Langues</div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <span class="tech-tag" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3);">Arabe (Maternelle)</span>
+              <span class="tech-tag" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3);">Français (Courant / C1)</span>
+              <span class="tech-tag" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3);">Anglais (Technique / B2)</span>
+              <span class="tech-tag" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3);">Espagnol (A2)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CONTACT SECTION
+       ========================================================= -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-sub"><i class="fa-solid fa-paper-plane"></i> Contact</div>
+        <h2 class="section-title">Échangeons sur vos <span class="text-gradient">Enjeux Techniques</span></h2>
+        <p class="section-desc">Vous souhaitez échanger sur une opportunité d'ingénierie, un projet d'envergure ou une collaboration ? N'hésitez pas à me contacter.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Coordonnées -->
+        <div>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px;">Coordonnées Directes</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Basé à Sfax, Tunisie — Mobile et ouvert aux échanges professionnels et opportunités à fort impact technique.
+          </p>
+
+          <div class="contact-info-list">
+            <a href="mailto:firas.sellami.tn@gmail.com" class="glass-card contact-card">
+              <div class="contact-icon-box">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <div class="contact-card-label">Email Professionnel</div>
+                <div class="contact-card-val">firas.sellami.tn@gmail.com</div>
+              </div>
+            </a>
+
+            <a href="tel:+21694874687" class="glass-card contact-card">
+              <div class="contact-icon-box">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <div class="contact-card-label">Téléphone / WhatsApp</div>
+                <div class="contact-card-val">+216 94 874 687</div>
+              </div>
+            </a>
+
+            <a href="https://linkedin.com/in/firas-sellami-107b22295" target="_blank" class="glass-card contact-card">
+              <div class="contact-icon-box">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </div>
+              <div>
+                <div class="contact-card-label">Profil LinkedIn</div>
+                <div class="contact-card-val">linkedin.com/in/firas-sellami</div>
+              </div>
+            </a>
+
+            <a href="https://github.com/firas9909" target="_blank" class="glass-card contact-card">
+              <div class="contact-icon-box">
+                <i class="fa-brands fa-github"></i>
+              </div>
+              <div>
+                <div class="contact-card-label">Dépôts & Code GitHub</div>
+                <div class="contact-card-val">github.com/firas9909</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Formulaire Interactif -->
+        <div class="glass-card" style="padding: 34px;">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 20px;">Envoyer un Message</h3>
+          
+          <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Votre Nom & Prénom</label>
+              <input type="text" class="form-input" placeholder="Ex: Jean Dupont" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Votre Adresse Email</label>
+              <input type="email" class="form-input" placeholder="Ex: jean.dupont@entreprise.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Sujet</label>
+              <input type="text" class="form-input" placeholder="Ex: Opportunité Ingénieur Logiciel / Collaboration" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Décrivez votre besoin ou message..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content: center; width: 100%; padding: 14px;">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Envoyer le Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="nav-logo-badge">FS</div>
+          <div class="footer-text">
+            © 2026 Firas Sellami · Ingénieur Génie Logiciel & DevOps. Tous droits réservés.
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <a href="cv_firas_sellami_modele2_onepage.pdf" download style="color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+            <i class="fa-solid fa-file-arrow-down"></i> Télécharger CV (PDF)
+          </a>
+          <button class="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Haut de page">
+            <i class="fa-solid fa-chevron-up"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL DE DÉTAILS PROJETS (INTERACTIF)
+       ========================================================= -->
+  <div class="modal-backdrop" id="projectModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-category" id="modalCategory">Catégorie</div>
+      <h3 class="modal-title" id="modalTitle">Titre du Projet</h3>
+      <div class="modal-body" id="modalDesc">Description complète...</div>
+      
+      <div style="font-weight: 700; color: #fff; margin-bottom: 10px;">Réalisations & Points Clés d'Ingénierie :</div>
+      <ul class="modal-features-list" id="modalFeatures"></ul>
+
+      <div style="font-weight: 700; color: #fff; margin-bottom: 8px;">Stack Technologique & Outils :</div>
+      <div class="tech-tags" id="modalStack"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SCRIPTS (ANIMATIONS, CANVAS, INTERACTIONS)
+       ========================================================= -->
+  <script>
+    // ---------------------------------------------------------
+    // 1. DATA DES PROJETS DÉTAILLÉS (MODAL)
+    // ---------------------------------------------------------
+    const projectDetails = {
+      fleet_inspection: {
+        category: "Système Métier Automobile · MTD Group",
+        title: "Plateforme de Gestion de Flotte & Inspection Multi-Agences",
+        desc: "Solution d'entreprise complète Web et Mobile destinée à la gestion des parcs automobiles, la digitalisation des fiches d'inspection technique et le suivi en temps réel des inventaires et des notifications d'équipes.",
+        features: [
+          "Architecture backend MVC sous CakePHP : gestion des contrôleurs de véhicules d'entreprises, inspections et inventaire.",
+          "Développement de l'application mobile Flutter pour les inspecteurs et agents sur le terrain avec mode synchronisé.",
+          "Automatisation continue du déploiement via un pipeline Jenkins (Jenkinsfile) avec déploiement distant sécurisé par clé SSH.",
+          "Système de notification en temps réel et tableau de bord exécutif de supervision."
+        ],
+        stack: ["CakePHP", "PHP 8+", "Flutter Mobile", "Dart", "Jenkins (Jenkinsfile)", "SSH Deploy", "MySQL", "Git"]
+      },
+      industrial_erp: {
+        category: "ERP Industriel & Logistique · MTD Group",
+        title: "ERP Industriel & Suivi Logistique / Commercial B2B",
+        desc: "Plateforme ERP conçue pour le secteur industriel et la préfabrication, couvrant l'ensemble du cycle de vie des commandes, bons de livraison (achats & ventes), traçabilité des lots et historisation des actions.",
+        features: [
+          "Implémentation des modules complets de Bons de Commande Vente, Bons de Livraison Vente/Achat et Corbeille sécurisée.",
+          "Génération dynamique et certifiée de documents PDF officiels via DomPDF.",
+          "Génération de QR Codes uniques (chillerlan/php-qrcode) pour la traçabilité physique des palettes et livraisons.",
+          "Journalisation exhaustive et module d'audit logs pour la conformité et la sécurité des données d'entreprise.",
+          "Pipeline de livraison continue automatisé sous Jenkins."
+        ],
+        stack: ["CakePHP", "PHP 8+", "DomPDF", "QR-Code Generator", "MySQL", "DDEV", "Jenkinsfile", "Git"]
+      },
+      fintech_loyalty: {
+        category: "Fintech & Moteur Transactionnel · MTD Group",
+        title: "Plateforme Fintech de Cashback & Moteur de Règles",
+        desc: "Moteur transactionnel et système de fidélité permettant le calcul automatique de cashbacks, la gestion des frais/commissions, l'évaluation de profils et la génération d'extraits financiers.",
+        features: [
+          "Conception d'un moteur de règles d'attribution de cashback et de barèmes de frais paramétrables.",
+          "Sécurisation des flux d'authentification et d'échanges de données via JSON Web Tokens (Firebase PHP-JWT).",
+          "Back-office de gestion pour les agents, développeurs et évaluateurs financiers.",
+          "Intégration d'une application mobile Flutter pour la consultation du solde cashback et l'historique des transactions.",
+          "Déploiement automatisé multi-environnements avec Jenkins."
+        ],
+        stack: ["CakePHP", "PHP 8+", "Firebase JWT", "Flutter", "MySQL", "Jenkinsfile", "REST API", "Git"]
+      },
+      leasing_accounting: {
+        category: "ERP Automobile & Comptabilité · MTD Group",
+        title: "Système de Location de Véhicules & Comptabilité Intégrée",
+        desc: "ERP d'entreprise gérant les contrats de location automobile, les reprises de véhicules (trade-ins), les mouvements de parc et intégrant un module complet de comptabilité générale et de trésorerie.",
+        features: [
+          "Conception et mapping de la base de données comptable : Grand Livre, écritures de journal, balances et caisses journalières.",
+          "Scripts de migration et de fiabilisation des écritures financières.",
+          "Module de suivi des comptes bancaires, encaissements et décaissements en temps réel.",
+          "Envoi automatisé des notifications et états financiers par email via PHPMailer.",
+          "Pipeline de livraison continue sous Jenkins."
+        ],
+        stack: ["CakePHP", "PHP 8+", "MySQL", "Comptabilité Générale", "PHPMailer", "Jenkins CI/CD", "Git"]
+      },
+      trust_portal: {
+        category: "Portail B2B Sécurisé · MTD Group",
+        title: "Portail d'Entreprise & Souscriptions Sécurisées",
+        desc: "Solution d'entreprise assurant la digitalisation et la sécurisation des processus de souscription, le traitement des contrats et la conformité des échanges de données sensibles.",
+        features: [
+          "Développement d'APIs RESTful performantes et sécurisées pour le traitement des demandes de souscription.",
+          "Contrôle strict des autorisations d'accès, validation des formulaires et gestion des pièces justificatives.",
+          "Intégration dans l'infrastructure de déploiement continu d'entreprise via GitLab et Jenkins."
+        ],
+        stack: ["CakePHP / PHP", "RESTful API", "MySQL", "GitLab CI", "Jenkins", "Sécurité"]
+      },
+      survey: {
+        category: "Microservices · SaaS Enterprise",
+        title: "Plateforme SaaS d'Enquêtes & Analytics",
+        desc: "Projet de fin d'études mené chez All Soft Multimédia. Cette plateforme multi-locataire permet aux entreprises de construire des questionnaires dynamiques et d'extraire automatiquement des tendances statistiques exploitables.",
+        features: [
+          "Architecture distribuée en Microservices avec Spring Boot.",
+          "Authentification et autorisations sécurisées basées sur les rôles avec Spring Security & JWT.",
+          "Interface utilisateur moderne sous Angular avec formulaires réactifs dynamiques et visualisation de graphiques.",
+          "Base relationnelle PostgreSQL optimisée et isolation complète des services avec Docker.",
+          "Tests unitaires et d'intégration assurés avec JUnit et Mockito selon le cycle agile Scrum."
+        ],
+        stack: ["Spring Boot", "Spring Security", "Angular", "PostgreSQL", "Docker", "JUnit", "Scrum"]
+      },
+      banking: {
+        category: "Core Banking · Sécurité & Audit",
+        title: "Système de Gestion Bancaire Sécurisé",
+        desc: "Solution logicielle complète pour la gestion des opérations financières courantes. Destinée aux guichets et clients, elle applique les principes de transactions atomiques (ACID) et de traçabilité des transferts de fonds.",
+        features: [
+          "Gestion des types de comptes (courant, épargne) avec vérification stricte des découverts et plafonds.",
+          "Module de virement interbancaire en temps réel avec journal d'audit et historique des transactions.",
+          "Architecture MVC robuste articulée autour de Spring Boot, Spring Data JPA et du moteur de template Thymeleaf.",
+          "Interface intuitive et responsive conçue avec Bootstrap 5."
+        ],
+        stack: ["Spring Boot", "Spring Data JPA", "Thymeleaf", "MySQL", "Bootstrap", "Java POO"]
+      },
+      places: {
+        category: "Mobile Cross-Platform · Géolocalisation",
+        title: "Guide Touristique & Évaluation Collaborative",
+        desc: "Application mobile développée lors du stage chez ASM. Permet aux utilisateurs de localiser, filtrer et évaluer des hôtels, cafés et restaurants selon des critères personnalisés.",
+        features: [
+          "Expérience utilisateur mobile ultra-fluide sous Flutter & Dart.",
+          "Système dynamique d'évaluation par étoiles, avis utilisateurs et filtrage multi-facettes.",
+          "API RESTful développée avec le framework Laravel (PHP) et base de données relationnelle MySQL.",
+          "Contrôle de conformité et tests d'APIs rigoureux via Postman."
+        ],
+        stack: ["Flutter", "Dart", "Laravel", "MySQL", "Postman", "RESTful API"]
+      },
+      hr: {
+        category: "Temps Réel · Cloud & Collaboration",
+        title: "Plateforme RH & Suivi IIT",
+        desc: "Solution multi-plateforme développée chez Freedom of Dev pour centraliser et rendre transparente la gestion des ressources humaines et le suivi des présences/disponibilités à l'Institut International de Technologie.",
+        features: [
+          "Double interface synchronisée : application mobile native et tableau de bord Web sous Flutter.",
+          "Base de données temps réel Cloud Firestore avec règles d'accès sécurisées Firebase Auth.",
+          "Gestion de sprint collaborative sous Trello en méthodologie Scrum."
+        ],
+        stack: ["Flutter", "Dart", "Firebase", "Cloud Firestore", "Trello", "Scrum"]
+      }
+    };
+
+    function openModal(projectId) {
+      const p = projectDetails[projectId];
+      if (!p) return;
+      document.getElementById('modalCategory').textContent = p.category;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalDesc').textContent = p.desc;
+      
+      const featuresEl = document.getElementById('modalFeatures');
+      featuresEl.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+
+      const stackEl = document.getElementById('modalStack');
+      stackEl.innerHTML = p.stack.map(s => `<span class="tech-tag" style="border-color: rgba(56, 189, 248, 0.4);">${s}</span>`).join('');
+
+      document.getElementById('projectModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'projectModal') closeModal();
+    }
+
+    // ---------------------------------------------------------
+    // 2. EFFET MACHINE À ÉCRIRE (TYPING EFFECT)
+    // ---------------------------------------------------------
+    const phrases = [
+      "Ingénieur Informatique chez MTD Group",
+      "Développeur Full-Stack (CakePHP & PHP 8+)",
+      "Développeur Mobile (Flutter & Dart)",
+      "Ingénieur DevOps (Jenkins · CI/CD · Docker)",
+      "Architecte Microservices (Spring Boot)"
+    ];
+
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    const typedTextEl = document.getElementById('typed-text');
+
+    function typeEffect() {
+      const current = phrases[phraseIdx];
+      if (isDeleting) {
+        typedTextEl.textContent = current.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        typedTextEl.textContent = current.substring(0, charIdx + 1);
+        charIdx++;
+      }
+
+      let speed = isDeleting ? 35 : 80;
+
+      if (!isDeleting && charIdx === current.length) {
+        speed = 1800; // Pause à la fin
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        speed = 400;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+    typeEffect();
+
+    // ---------------------------------------------------------
+    // 3. CURSEUR INTERACTIF PERSONNALISÉ
+    // ---------------------------------------------------------
+    const dot = document.getElementById('cursor-dot');
+    const outline = document.getElementById('cursor-outline');
+
+    window.addEventListener('mousemove', (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+
+      dot.style.left = `${posX}px`;
+      dot.style.top = `${posY}px`;
+
+      outline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 350, fill: "forwards" });
+    });
+
+    document.querySelectorAll('a, button, .glass-card, input, textarea').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        outline.style.transform = 'translate(-50%, -50%) scale(1.6)';
+        outline.style.borderColor = 'rgba(56, 189, 248, 0.9)';
+        outline.style.backgroundColor = 'rgba(56, 189, 248, 0.08)';
+      });
+      el.addEventListener('mouseleave', () => {
+        outline.style.transform = 'translate(-50%, -50%) scale(1)';
+        outline.style.borderColor = 'rgba(56, 189, 248, 0.5)';
+        outline.style.backgroundColor = 'transparent';
+      });
+    });
+
+    // ---------------------------------------------------------
+    // 4. CANVAS DYNAMIQUE PARTICULES / CONSTELLATIONS
+    // ---------------------------------------------------------
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    let width, height;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.radius = Math.random() * 1.8 + 0.8;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > height) this.vy = -this.vy;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.fill();
+      }
+    }
+
+    const particleCount = Math.min(Math.floor(window.innerWidth / 16), 75);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Dessin des liaisons
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 125) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.18 * (1 - dist / 125)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ---------------------------------------------------------
+    // 5. EFFET 3D TILT SUR L'AVATAR CARD
+    // ---------------------------------------------------------
+    const avatarCard = document.getElementById('avatarCard');
+    if (avatarCard) {
+      avatarCard.addEventListener('mousemove', (e) => {
+        const rect = avatarCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotateX = (-y / rect.height) * 22;
+        const rotateY = (x / rect.width) * 22;
+        avatarCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+      });
+
+      avatarCard.addEventListener('mouseleave', () => {
+        avatarCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    // ---------------------------------------------------------
+    // 6. COMPTEURS ANIMÉS DES STATISTIQUES
+    // ---------------------------------------------------------
+    let statsTriggered = false;
+    const statNums = document.querySelectorAll('.stat-num');
+
+    function animateCounters() {
+      statNums.forEach(el => {
+        const target = +el.getAttribute('data-target');
+        let current = 0;
+        const increment = target / 35;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            el.textContent = target + (target === 100 ? '%' : '+');
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current);
+          }
+        }, 35);
+      });
+    }
+
+    function checkStatsVisibility() {
+      const statsBar = document.querySelector('.stats-bar');
+      if (statsBar && !statsTriggered) {
+        const rect = statsBar.getBoundingClientRect();
+        if (rect.top <= window.innerHeight) {
+          statsTriggered = true;
+          animateCounters();
+        }
+      }
+    }
+    window.addEventListener('scroll', checkStatsVisibility);
+    window.addEventListener('DOMContentLoaded', checkStatsVisibility);
+    setTimeout(checkStatsVisibility, 400);
+
+    // ---------------------------------------------------------
+    // 7. FILTRES DES PROJETS & COMPÉTENCES
+    // ---------------------------------------------------------
+    function filterProjects(cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('#projectsContainer .project-card');
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        if (cat === 'all' || cardCat === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function filterSkills(cat) {
+      document.querySelectorAll('.skill-tab-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const skills = document.querySelectorAll('#skillsContainer .skill-card');
+      skills.forEach(skill => {
+        const skillCat = skill.getAttribute('data-cat');
+        if (cat === 'all' || skillCat === cat) {
+          skill.style.display = 'flex';
+        } else {
+          skill.style.display = 'none';
+        }
+      });
+    }
+
+    // ---------------------------------------------------------
+    // 8. SOUMISSION DU FORMULAIRE DE CONTACT
+    // ---------------------------------------------------------
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalHTML = btn.innerHTML;
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Envoi en cours...`;
+
+      setTimeout(() => {
+        btn.innerHTML = `<i class="fa-solid fa-check"></i> Message Envoyé avec Succès !`;
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        e.target.reset();
+
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalHTML;
+          btn.style.background = '';
+        }, 4000);
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
